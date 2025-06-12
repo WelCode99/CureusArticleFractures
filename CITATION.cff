@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "Se você utilizar este repositório, por favor cite-o como abaixo."
+authors:
+  - family-names: "Costa"
+    given-names: "Welisson"
+    orcid: "https://orcid.org/0000-0000-0000-0000" # Substitua pelo seu ORCID
+title: "Dados e Código para: Análise de Fraturas de Fragilidade no Brasil"
+version: 1.0.0
+date-released: 2023-07-24
+url: "https://github.com/WelCode99/CureusArticleFractures"
+repository-code: "https://github.com/WelCode99/CureusArticleFractures"
+license:
+  - MIT
+  - CC-BY-4.0
+keywords:
+  - fraturas de fragilidade
+  - epidemiologia
+  - datasus
+  - saúde pública
+  - brasil

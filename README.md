@@ -1,5 +1,7 @@
 # Repositório de Dados e Código para o Artigo [TÍTULO DO ARTIGO]
 
+[![DOI](https://zenodo.org/badge/DOI/[SUBSTITUA_PELO_SEU_DOI].svg)](https://doi.org/[SUBSTITUA_PELO_SEU_DOI])
+
 Este repositório contém os dados e o código de análise para o artigo intitulado "[TÍTULO DO ARTIGO]" submetido à revista Cureus.
 
 ## Descrição
@@ -81,11 +83,13 @@ Este repositório contém os dados e o código de análise para o artigo intitul
 
 Se você utilizar estes dados ou o código em sua pesquisa, por favor, cite o artigo original (assim que publicado) e este repositório de dados.
 
-**Exemplo de Citação (a ser atualizado com o DOI):**
+**Citação do Artigo:**
 
 > Autor(es). (Ano). Título do Artigo. _Cureus_. DOI: [DOI_A_SER_ATRIBUÍDO]
->
-> Autor(es). (Ano). Dados e Código para: "Título do Artigo" [Repositório de dados e software]. GitHub. URL: https://github.com/WelCode99/CureusArticleFractures
+
+**Citação do Repositório de Dados:**
+
+> Autor(es). (Ano). Dados e Código para: "Título do Artigo" [Repositório de dados e software]. Zenodo. DOI: [SUBSTITUA_PELO_SEU_DOI]
 
 ## Licença
 
