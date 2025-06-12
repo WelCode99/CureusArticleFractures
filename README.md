@@ -1,6 +1,6 @@
 # Repositório de Dados e Código para o Artigo [TÍTULO DO ARTIGO]
 
-[![DOI](https://zenodo.org/badge/DOI/[SUBSTITUA_PELO_SEU_DOI].svg)](https://doi.org/[SUBSTITUA_PELO_SEU_DOI])
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15650905.svg)](https://doi.org/10.5281/zenodo.15650905)
 
 Este repositório contém os dados e o código de análise para o artigo intitulado "[TÍTULO DO ARTIGO]" submetido à revista Cureus.
 
@@ -89,7 +89,7 @@ Se você utilizar estes dados ou o código em sua pesquisa, por favor, cite o ar
 
 **Citação do Repositório de Dados:**
 
-> Autor(es). (Ano). Dados e Código para: "Título do Artigo" [Repositório de dados e software]. Zenodo. DOI: [SUBSTITUA_PELO_SEU_DOI]
+> Autor(es). (Ano). Dados e Código para: "Título do Artigo" [Repositório de dados e software]. Zenodo. DOI: 10.5281/zenodo.15650905
 
 ## Licença
 
