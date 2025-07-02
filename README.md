@@ -1,4 +1,4 @@
-Claro, aqui está a tradução completa do conteúdo do seu repositório para o inglês, mantendo toda a estrutura e formatação originais.
+
 
 -----
 
@@ -8,9 +8,6 @@ Claro, aqui está a tradução completa do conteúdo do seu repositório para o 
 
 This repository contains the data and analysis code for the article titled "[ARTICLE TITLE]" submitted to the Cureus journal.
 
-## Description
-
-[INSERT HERE A BRIEF DESCRIPTION OF THE STUDY, ITS OBJECTIVES, AND METHODS.]
 
 ## Repository Structure
 
