@@ -293,3 +293,69 @@ plt.show()
 # VAL_TOT by faixa_etaria_corrigida
 print("\nAnalysis of VAL_TOT by Age Group:")
 
+
+----------------------------------------------------------------------------------------
+import pandas as pd
+from scipy.stats import mannwhitneyu
+
+# --- 1. Data Loading and Preparation ---
+# Tries to load the main file, if not found, uses the fallback.
+try:
+    df = pd.read_csv('FraturasCorrigido.csv')
+except FileNotFoundError:
+    print("'FraturasCorrigido.csv' file not found. Trying 'Fraturas.csv'...")
+    df = pd.read_csv('Fraturas.csv')
+
+# Ensures that numerical columns are in the correct format, handling errors.
+df['VAL_TOT'] = pd.to_numeric(df['VAL_TOT'], errors='coerce')
+
+# Calculates hospitalization days from dates to ensure accuracy
+df['DT_INTER'] = pd.to_datetime(df['DT_INTER'], errors='coerce')
+df['DT_SAIDA'] = pd.to_datetime(df['DT_SAIDA'], errors='coerce')
+df['DIAS_INTERNACAO'] = (df['DT_SAIDA'] - df['DT_INTER']).dt.days
+
+# Removes rows where essential values for the analysis are null
+df.dropna(subset=['MORTE', 'VAL_TOT', 'DIAS_INTERNACAO', 'tipo_fratura'], inplace=True)
+
+print("Data loaded and prepared successfully.")
+print(f"Total records for analysis: {len(df)}")
+
+# --- 2. Calculation of Mann-Whitney U Tests by Subgroup ---
+fracture_types = ['Proximal femur', 'Hip/Pelvis', 'Humerus', 'Vertebra', 'Forearm/Wrist']
+results = {}
+
+print("\n--- Calculating Mann-Whitney U Tests ---")
+
+for ft in fracture_types:
+    subset = df[df['tipo_fratura'] == ft]
+    survivors = subset[subset['MORTE'] == 'No']
+    non_survivors = subset[subset['MORTE'] == 'Yes']
+
+    # Ensures there is data in both groups for comparison
+    if not survivors.empty and not non_survivors.empty:
+        # Cost Comparison (VAL_TOT)
+        u_stat_cost, p_val_cost = mannwhitneyu(
+            survivors['VAL_TOT'],
+            non_survivors['VAL_TOT'],
+            alternative='two-sided'
+        )
+        # Length of Stay Comparison (DIAS_INTERNACAO)
+        u_stat_los, p_val_los = mannwhitneyu(
+            survivors['DIAS_INTERNACAO'],
+            non_survivors['DIAS_INTERNACAO'],
+            alternative='two-sided'
+        )
+        results[ft] = {
+            'U-Stat (Cost)': u_stat_cost,
+            'U-Stat (Stay)': u_stat_los
+        }
+
+# --- 3. Presentation of Results for the Table ---
+print("\n--- Calculated Values for the Table ---")
+for fracture, res in results.items():
+    cost_u = res['U-Stat (Cost)']
+    los_u = res['U-Stat (Stay)']
+    print(f"\nFracture Type: {fracture}")
+    print(f"  Cost: U-statistic = {cost_u:,.1f}")
+    print(f"  Stay: U-statistic = {los_u:,.1f}")
+
