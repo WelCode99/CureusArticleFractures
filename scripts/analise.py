@@ -1,22 +1,24 @@
 import pandas as pd
 
 # Read the CSV file
-df = pd.read_csv("../dados/FraturasCorrigido.csv")
+# The path "../dados/" suggests the "data" folder is one level above the script's location.
+# This is translated to "../data/" to match the English repository structure.
+df = pd.read_csv("../data/FraturasCorrigido.csv")
 
 # Display basic information about the DataFrame
-print("Informações iniciais do DataFrame:")
+print("Initial DataFrame information:")
 df.info()
 
 # Display the first 5 rows of the DataFrame
-print("\nPrimeiras 5 linhas do DataFrame:")
+print("\nFirst 5 rows of the DataFrame:")
 print(df.head())
 
 # Check for missing values
-print("\nValores ausentes por coluna:")
+print("\nMissing values per column:")
 print(df.isnull().sum())
 
 # Display descriptive statistics for numerical columns
-print("\nEstatísticas descritivas para colunas numéricas:")
+print("\nDescriptive statistics for numerical columns:")
 print(df.describe())
 
 import numpy as np
@@ -35,45 +37,45 @@ df["DIAS_INTERNACAO"] = (df["DT_SAIDA"] - df["DT_INTER"]).dt.days
 
 # --- In-depth Descriptive Statistics and Visualization ---
 
-print("\n--- Análise Estatística Detalhada ---")
+print("\n--- Detailed Statistical Analysis ---")
 
-# 1. Análise de Variáveis Categóricas
+# 1. Analysis of Categorical Variables
 
-# SEXO
-print("\nAnálise da Variável 'SEXO':")
+# SEXO (Gender)
+print("\nAnalysis of the 'SEXO' Variable:")
 sexo_counts = df["SEXO"].value_counts()
 sexo_proportions = df["SEXO"].value_counts(normalize=True) * 100
-print(pd.DataFrame({"Contagem": sexo_counts, "Proporção (%)": sexo_proportions}))
+print(pd.DataFrame({"Count": sexo_counts, "Proportion (%)": sexo_proportions}))
 
 plt.figure(figsize=(8, 6))
 sns.countplot(x="SEXO", data=df, palette="viridis")
-plt.title("Distribuição de Gênero")
-plt.xlabel("Gênero")
-plt.ylabel("Contagem")
+plt.title("Gender Distribution")
+plt.xlabel("Gender")
+plt.ylabel("Count")
 plt.show()
 
-# MORTE
-print("\nAnálise da Variável 'MORTE':")
+# MORTE (Death)
+print("\nAnalysis of the 'MORTE' Variable:")
 morte_counts = df["MORTE"].value_counts()
 morte_proportions = df["MORTE"].value_counts(normalize=True) * 100
-print(pd.DataFrame({"Contagem": morte_counts, "Proporção (%)": morte_proportions}))
+print(pd.DataFrame({"Count": morte_counts, "Proportion (%)": morte_proportions}))
 
 plt.figure(figsize=(8, 6))
 sns.countplot(x="MORTE", data=df, palette="plasma")
-plt.title("Distribuição de Óbitos")
-plt.xlabel("Óbito")
-plt.ylabel("Contagem")
+plt.title("Distribution of Deaths")
+plt.xlabel("Death")
+plt.ylabel("Count")
 plt.show()
 
-# faixa_etaria_corrigida
-print("\nAnálise da Variável 'faixa_etaria_corrigida':")
+# faixa_etaria_corrigida (Corrected Age Group)
+print("\nAnalysis of the 'faixa_etaria_corrigida' Variable:")
 faixa_etaria_counts = df["faixa_etaria_corrigida"].value_counts().sort_index()
 faixa_etaria_proportions = (
     df["faixa_etaria_corrigida"].value_counts(normalize=True).sort_index() * 100
 )
 print(
     pd.DataFrame(
-        {"Contagem": faixa_etaria_counts, "Proporção (%)": faixa_etaria_proportions}
+        {"Count": faixa_etaria_counts, "Proportion (%)": faixa_etaria_proportions}
     )
 )
 
@@ -84,18 +86,18 @@ sns.countplot(
     order=faixa_etaria_counts.index,
     palette="cividis",
 )
-plt.title("Distribuição por Faixa Etária Corrigida")
-plt.xlabel("Contagem")
-plt.ylabel("Faixa Etária")
+plt.title("Distribution by Corrected Age Group")
+plt.xlabel("Count")
+plt.ylabel("Age Group")
 plt.show()
 
-# tipo_fratura
-print("\nAnálise da Variável 'tipo_fratura':")
+# tipo_fratura (Fracture Type)
+print("\nAnalysis of the 'tipo_fratura' Variable:")
 tipo_fratura_counts = df["tipo_fratura"].value_counts()
 tipo_fratura_proportions = df["tipo_fratura"].value_counts(normalize=True) * 100
 print(
     pd.DataFrame(
-        {"Contagem": tipo_fratura_counts, "Proporção (%)": tipo_fratura_proportions}
+        {"Count": tipo_fratura_counts, "Proportion (%)": tipo_fratura_proportions}
     )
 )
 
@@ -103,70 +105,70 @@ plt.figure(figsize=(12, 8))
 sns.countplot(
     y="tipo_fratura", data=df, order=tipo_fratura_counts.index, palette="magma"
 )
-plt.title("Distribuição por Tipo de Fratura")
-plt.xlabel("Contagem")
-plt.ylabel("Tipo de Fratura")
+plt.title("Distribution by Fracture Type")
+plt.xlabel("Count")
+plt.ylabel("Fracture Type")
 plt.show()
 
-# regiao
-print("\nAnálise da Variável 'regiao':")
+# regiao (Region)
+print("\nAnalysis of the 'regiao' Variable:")
 regiao_counts = df["regiao"].value_counts()
 regiao_proportions = df["regiao"].value_counts(normalize=True) * 100
-print(pd.DataFrame({"Contagem": regiao_counts, "Proporção (%)": regiao_proportions}))
+print(pd.DataFrame({"Count": regiao_counts, "Proportion (%)": regiao_proportions}))
 
 plt.figure(figsize=(10, 7))
 sns.countplot(y="regiao", data=df, order=regiao_counts.index, palette="GnBu_d")
-plt.title("Distribuição por Região da Fratura")
-plt.xlabel("Contagem")
-plt.ylabel("Região")
+plt.title("Distribution by Fracture Region")
+plt.xlabel("Count")
+plt.ylabel("Region")
 plt.show()
 
-# tem_osteoporose
-print("\nAnálise da Variável 'tem_osteoporose':")
+# tem_osteoporose (Has Osteoporosis)
+print("\nAnalysis of the 'tem_osteoporose' Variable:")
 osteoporose_counts = df["tem_osteoporose"].value_counts()
 osteoporose_proportions = df["tem_osteoporose"].value_counts(normalize=True) * 100
 print(
     pd.DataFrame(
-        {"Contagem": osteoporose_counts, "Proporção (%)": osteoporose_proportions}
+        {"Count": osteoporose_counts, "Proportion (%)": osteoporose_proportions}
     )
 )
 
-# obito_hospitalar (rechecking as it was 0 for all)
-print("\nAnálise da Variável 'obito_hospitalar':")
+# obito_hospitalar (Hospital Death) (rechecking as it was 0 for all)
+print("\nAnalysis of the 'obito_hospitalar' Variable:")
 obito_hospitalar_counts = df["obito_hospitalar"].value_counts()
 obito_hospitalar_proportions = df["obito_hospitalar"].value_counts(normalize=True) * 100
 print(
     pd.DataFrame(
         {
-            "Contagem": obito_hospitalar_counts,
-            "Proporção (%)": obito_hospitalar_proportions,
+            "Count": obito_hospitalar_counts,
+            "Proportion (%)": obito_hospitalar_proportions,
         }
     )
 )
 
-# ano_internacao
-print("\nAnálise da Variável 'ano_internacao':")
+# ano_internacao (Year of Hospitalization)
+print("\nAnalysis of the 'ano_internacao' Variable:")
 ano_internacao_counts = df["ano_internacao"].value_counts().sort_index()
 ano_internacao_proportions = (
     df["ano_internacao"].value_counts(normalize=True).sort_index() * 100
 )
 print(
     pd.DataFrame(
-        {"Contagem": ano_internacao_counts, "Proporção (%)": ano_internacao_proportions}
+        {"Count": ano_internacao_counts, "Proportion (%)": ano_internacao_proportions}
     )
 )
 
 plt.figure(figsize=(10, 6))
 sns.countplot(x="ano_internacao", data=df, palette="coolwarm")
-plt.title("Número de Internações por Ano")
-plt.xlabel("Ano de Internação")
-plt.ylabel("Contagem")
+plt.title("Number of Hospitalizations per Year")
+plt.xlabel("Year of Hospitalization")
+plt.ylabel("Count")
 plt.show()
 
-# 2. Análise de Variáveis Numéricas
+# 2. Analysis of Numerical Variables
 
-# IDADE
-print("\nAnálise da Variável 'IDADE':")
+# IDADE (Age)
+print("\nAnalysis of the 'IDADE' Variable:")
 print(df["IDADE"].describe())
 print(f"Skewness (IDADE): {df['IDADE'].skew():.2f}")
 print(f"Kurtosis (IDADE): {df['IDADE'].kurtosis():.2f}")
@@ -174,18 +176,18 @@ print(f"Kurtosis (IDADE): {df['IDADE'].kurtosis():.2f}")
 plt.figure(figsize=(15, 6))
 plt.subplot(1, 2, 1)
 sns.histplot(df["IDADE"], kde=True, bins=30, color="skyblue")
-plt.title("Distribuição de Idade")
-plt.xlabel("Idade")
-plt.ylabel("Frequência")
+plt.title("Age Distribution")
+plt.xlabel("Age")
+plt.ylabel("Frequency")
 
 plt.subplot(1, 2, 2)
 sns.boxplot(y="IDADE", data=df, color="lightcoral")
-plt.title("Box Plot da Idade")
-plt.ylabel("Idade")
+plt.title("Age Box Plot")
+plt.ylabel("Age")
 plt.show()
 
-# VAL_TOT
-print("\nAnálise da Variável 'VAL_TOT' (Valor Total da Internação):")
+# VAL_TOT (Total Hospitalization Cost)
+print("\nAnalysis of the 'VAL_TOT' Variable (Total Hospitalization Cost):")
 print(df["VAL_TOT"].describe())
 print(f"Skewness (VAL_TOT): {df['VAL_TOT'].skew():.2f}")
 print(f"Kurtosis (VAL_TOT): {df['VAL_TOT'].kurtosis():.2f}")
@@ -193,18 +195,18 @@ print(f"Kurtosis (VAL_TOT): {df['VAL_TOT'].kurtosis():.2f}")
 plt.figure(figsize=(15, 6))
 plt.subplot(1, 2, 1)
 sns.histplot(df["VAL_TOT"], kde=True, bins=50, color="lightgreen")
-plt.title("Distribuição do Valor Total da Internação")
-plt.xlabel("Valor Total")
-plt.ylabel("Frequência")
+plt.title("Distribution of Total Hospitalization Cost")
+plt.xlabel("Total Cost")
+plt.ylabel("Frequency")
 
 plt.subplot(1, 2, 2)
 sns.boxplot(y="VAL_TOT", data=df, color="orange")
-plt.title("Box Plot do Valor Total da Internação")
-plt.ylabel("Valor Total")
+plt.title("Box Plot of Total Hospitalization Cost")
+plt.ylabel("Total Cost")
 plt.show()
 
-# DIAS_PERM
-print("\nAnálise da Variável 'DIAS_PERM' (Dias de Permanência Originais):")
+# DIAS_PERM (Original Days of Stay)
+print("\nAnalysis of the 'DIAS_PERM' Variable (Original Days of Stay):")
 print(df["DIAS_PERM"].describe())
 print(f"Skewness (DIAS_PERM): {df['DIAS_PERM'].skew():.2f}")
 print(f"Kurtosis (DIAS_PERM): {df['DIAS_PERM'].kurtosis():.2f}")
@@ -212,18 +214,18 @@ print(f"Kurtosis (DIAS_PERM): {df['DIAS_PERM'].kurtosis():.2f}")
 plt.figure(figsize=(15, 6))
 plt.subplot(1, 2, 1)
 sns.histplot(df["DIAS_PERM"], kde=True, bins=30, color="purple")
-plt.title("Distribuição dos Dias de Permanência Originais")
-plt.xlabel("Dias de Permanência")
-plt.ylabel("Frequência")
+plt.title("Distribution of Original Days of Stay")
+plt.xlabel("Days of Stay")
+plt.ylabel("Frequency")
 
 plt.subplot(1, 2, 2)
 sns.boxplot(y="DIAS_PERM", data=df, color="pink")
-plt.title("Box Plot dos Dias de Permanência Originais")
-plt.ylabel("Dias de Permanência")
+plt.title("Box Plot of Original Days of Stay")
+plt.ylabel("Days of Stay")
 plt.show()
 
-# DIAS_INTERNACAO (Recém-calculada)
-print("\nAnálise da Variável 'DIAS_INTERNACAO' (Dias de Internação Calculados):")
+# DIAS_INTERNACAO (Calculated Hospitalization Days)
+print("\nAnalysis of the 'DIAS_INTERNACAO' Variable (Calculated Hospitalization Days):")
 print(df["DIAS_INTERNACAO"].describe())
 print(f"Skewness (DIAS_INTERNACAO): {df['DIAS_INTERNACAO'].skew():.2f}")
 print(f"Kurtosis (DIAS_INTERNACAO): {df['DIAS_INTERNACAO'].kurtosis():.2f}")
@@ -231,18 +233,18 @@ print(f"Kurtosis (DIAS_INTERNACAO): {df['DIAS_INTERNACAO'].kurtosis():.2f}")
 plt.figure(figsize=(15, 6))
 plt.subplot(1, 2, 1)
 sns.histplot(df["DIAS_INTERNACAO"], kde=True, bins=30, color="teal")
-plt.title("Distribuição dos Dias de Internação Calculados")
-plt.xlabel("Dias de Internação")
-plt.ylabel("Frequência")
+plt.title("Distribution of Calculated Hospitalization Days")
+plt.xlabel("Hospitalization Days")
+plt.ylabel("Frequency")
 
 plt.subplot(1, 2, 2)
 sns.boxplot(y="DIAS_INTERNACAO", data=df, color="gold")
-plt.title("Box Plot dos Dias de Internação Calculados")
-plt.ylabel("Dias de Internação")
+plt.title("Box Plot of Calculated Hospitalization Days")
+plt.ylabel("Hospitalization Days")
 plt.show()
 
-# 3. Correlação entre Variáveis Numéricas
-print("\n--- Correlação entre Variáveis Numéricas ---")
+# 3. Correlation between Numerical Variables
+print("\n--- Correlation between Numerical Variables ---")
 numerical_cols = [
     "IDADE",
     "VAL_TOT",
@@ -254,43 +256,43 @@ numerical_cols = [
     "munResArea",
 ]
 correlation_matrix = df[numerical_cols].corr()
-print("Matriz de Correlação:")
+print("Correlation Matrix:")
 print(correlation_matrix)
 
 plt.figure(figsize=(10, 8))
 sns.heatmap(correlation_matrix, annot=True, cmap="coolwarm", fmt=".2f")
-plt.title("Matriz de Correlação entre Variáveis Numéricas")
+plt.title("Correlation Matrix between Numerical Variables")
 plt.show()
 
-# 4. Análise de Relação entre Variáveis (Exemplos)
+# 4. Analysis of Relationships between Variables (Examples)
 
-# VAL_TOT por SEXO
-print("\nAnálise de VAL_TOT por SEXO:")
+# VAL_TOT by SEXO
+print("\nAnalysis of VAL_TOT by SEXO:")
 plt.figure(figsize=(8, 6))
 sns.boxplot(x="SEXO", y="VAL_TOT", data=df, palette="viridis")
-plt.title("Valor Total da Internação por Gênero")
-plt.xlabel("Gênero")
-plt.ylabel("Valor Total da Internação")
+plt.title("Total Hospitalization Cost by Gender")
+plt.xlabel("Gender")
+plt.ylabel("Total Hospitalization Cost")
 plt.ylim(
     0, df["VAL_TOT"].quantile(0.99)
 )  # Limiting y-axis to focus on the majority of data
 plt.show()
 
-# DIAS_PERM por SEXO
-print("\nAnálise de DIAS_PERM por SEXO:")
+# DIAS_PERM by SEXO
+print("\nAnalysis of DIAS_PERM by SEXO:")
 plt.figure(figsize=(8, 6))
 sns.boxplot(x="SEXO", y="DIAS_PERM", data=df, palette="plasma")
-plt.title("Dias de Permanência por Gênero")
-plt.xlabel("Gênero")
-plt.ylabel("Dias de Permanência")
+plt.title("Days of Stay by Gender")
+plt.xlabel("Gender")
+plt.ylabel("Days of Stay")
 plt.ylim(
     0, df["DIAS_PERM"].quantile(0.99)
 )  # Limiting y-axis to focus on the majority of data
 plt.show()
 
-# VAL_TOT por faixa_etaria_corrigida
-print("\nAnálise de VAL_TOT por Faixa Etária:")
+# VAL_TOT by faixa_etaria_corrigida
+print("\nAnalysis of VAL_TOT by Age Group:")
 
-# NOTA: O script original foi truncado durante a leitura.
-# Pode haver mais código de análise após este ponto.
-# Por favor, verifique o arquivo original e complete se necessário.
+# NOTE: The original script was truncated during reading.
+# There may be more analysis code after this point.
+# Please check the original file and complete if necessary.
