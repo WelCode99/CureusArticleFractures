@@ -293,6 +293,3 @@ plt.show()
 # VAL_TOT by faixa_etaria_corrigida
 print("\nAnalysis of VAL_TOT by Age Group:")
 
-# NOTE: The original script was truncated during reading.
-# There may be more analysis code after this point.
-# Please check the original file and complete if necessary.
